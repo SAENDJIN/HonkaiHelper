@@ -1,5 +1,4 @@
 import tkinter as tk
-from main_page_btn import hide_buttons
 from PIL import Image, ImageTk
 
 # Dropdown options
@@ -19,12 +18,7 @@ def update_image(selected_option, image_label):
     image_label.config(image=photo)
     image_label.image = photo  # Keep a reference to prevent garbage collection
 
-
-def show_dropdown():
-    hide_buttons()
-    option_menu.pack()
-
-
+# Create the Tkinter window
 root = tk.Tk()
 root.title("Image Display")
 

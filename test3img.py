@@ -9,6 +9,7 @@ options = ["Clara", "Natasha", "Sushang", "Trailblazer (Physical)",
            "Dan Heng", "Sampo", "Qingque", "Seele", "Silver Wolf",
            "Luocha", "Welt", "Yukong"]
 
+
 def update_image(selected_option, image_label):
     image_filename = f"img_char/{selected_option}.webp"
     image = Image.open(image_filename)
@@ -17,13 +18,10 @@ def update_image(selected_option, image_label):
     image_label.config(image=photo)
     image_label.image = photo  # Keep a reference to prevent garbage collection
 
+
 # Create the Tkinter window
 root = tk.Tk()
 root.title("Image Display")
-
-# Explanation text label
-explanation_label = tk.Label(root, text="Please select an option from the dropdown to see the corresponding image")
-explanation_label.pack(pady=10)
 
 # Create a StringVar to store the selected option
 var = tk.StringVar(root)
