@@ -5,9 +5,9 @@ from PIL import Image, ImageTk
 def update_image():
     selected_option = var.get()
     if selected_option == "Clara":
-        image_path = "img_char/Clara.webp"
+        image_path = "../img_char/Clara.webp"
     elif selected_option == "Natasha":
-        image_path = "img_char/Natasha.webp"
+        image_path = "../img_char/Natasha.webp"
     else:
         return
 

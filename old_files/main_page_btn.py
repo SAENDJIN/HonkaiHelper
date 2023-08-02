@@ -17,5 +17,5 @@ root = tk.Tk()
 buttons_frame = tk.Frame(root)
 buttons_frame.pack()
 # Buttons
-button1 = tk.Button(buttons_frame, text="Вібрать персонажа")
-button2 = tk.Button(buttons_frame, text="Вібрать реликвию / планарній сет")
+button1 = tk.Button(buttons_frame, text="Choose character")
+button2 = tk.Button(buttons_frame, text="Choose relict / Planetary Sets")
