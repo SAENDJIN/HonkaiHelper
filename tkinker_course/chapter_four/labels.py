@@ -10,7 +10,7 @@ root.geometry("600x400")
 root.resizable(False, False)
 root.title("Widget Examples")
 
-image = Image.open("/img_char/Clara.webp"). \
+image = Image.open("C:\\Users\\andre\\PycharmProjects\\HonkaiHelper\\img_char\\Clara.webp"). \
     resize((128, 128))
 photo = ImageTk.PhotoImage(image)
 
