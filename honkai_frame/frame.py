@@ -17,7 +17,7 @@ class HonkaiHelper(tk.Tk):
         for FrameClass in (MainPage, CharactersInfo, ArtifactInfo):
             frame = FrameClass(container, self)
             self.frames[FrameClass] = frame
-            frame.grid(row=0, column=0, sticky="NSEW", )
+            frame.grid(row=0, column=0, sticky="NSEW")
 
         self.show_frame(MainPage)
 
@@ -34,14 +34,14 @@ class MainPage(ttk.Frame):
             text="Character INFO",
             command=lambda: controller.show_frame(CharactersInfo)
         )
-        character_button.grid(column=1, row=4, columnspan=2, sticky="EW")
+        character_button.grid(column=0, row=0, columnspan=1, sticky="EW")
 
         relict_button = ttk.Button(
             self,
             text="Relict INFO",
             command=lambda: controller.show_frame(CharactersInfo)
         )
-        relict_button.grid(column=1, row=3, columnspan=2, sticky="EW", )
+        relict_button.grid(column=0, row=1, columnspan=1, sticky="EW",  )
 
 
 class CharactersInfo(ttk.Frame):

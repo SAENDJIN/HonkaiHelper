@@ -12,17 +12,6 @@ class DistanceConverter(tk.Tk):
         container = ttk.Frame(self)
         container.grid(padx=10, pady=10, sticky="EW")
 
-        """
-        metres_to_feet = MetresToFeet(container, self)
-        metres_to_feet.grid(row=0, column=0, sticky="NSEW")
-
-        feet_to_metres = FeetToMetres(container, self)
-        feet_to_metres.grid(row=0, column=0, sticky="NSEW")
-
-        self.frames[MetresToFeet] = metres_to_feet
-        self.frames[FeetToMetres] = feet_to_metres
-        """
-
         for FrameClass in (MetresToFeet, FeetToMetres):
             frame = FrameClass(container, self)
             self.frames[FrameClass] = frame
@@ -32,6 +21,8 @@ class DistanceConverter(tk.Tk):
 
     def show_frame(self, container):
         frame = self.frames[container]
+        self.bind("<Return>", frame.calculate)
+        self.bind("<KP_Enter>", frame.calculate)
         frame.tkraise()
 
 
@@ -56,7 +47,7 @@ class MetresToFeet(ttk.Frame):
         calculate_button = ttk.Button(
             self,
             text="Calculate",
-            command=self.calculate_feet
+            command=self.calculate
         )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
@@ -70,7 +61,7 @@ class MetresToFeet(ttk.Frame):
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)
 
-    def calculate_feet(self, *args):
+    def calculate(self, *args):
         try:
             value = float(self.metres_value.get())
             self.feet_value.set('%.3f' % (value * 3.28084))
@@ -99,7 +90,7 @@ class FeetToMetres(ttk.Frame):
         calculate_button = ttk.Button(
             self,
             text="Calculate",
-            command=self.calculate_metres
+            command=self.calculate
         )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
@@ -113,7 +104,7 @@ class FeetToMetres(ttk.Frame):
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)
 
-    def calculate_metres(self, *args):
+    def calculate(self, *args):
         try:
             value = float(self.feet_value.get())
             self.metres_value.set('%.3f' % (value / 3.28084))
