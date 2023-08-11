@@ -75,11 +75,11 @@ sub_stats = ["Flat_HP",
              "HP%",
              "ATK%",
              "DEF%",
-             "Crit Rate",
-             "Crit DMG",
-             "Effect Hit Rate",
-             "Effect RES",
-             "Break Effect%",
+             "Crit_Rate",
+             "Crit_DMG",
+             "Effect_Hit_Rate",
+             "Effect_RES",
+             "Break_Effect%",
              "Speed"]
 
 artifact_label = tk.Label(input_frame, text="Relic name:")
@@ -174,6 +174,12 @@ def search():
     sub_stat_3 = sub_stat_three_dropdown.get()
     sub_stat_4 = sub_stat_four_dropdown.get()
 
+    sub = []
+    sub.append(sub_stat_1)
+    sub.append(sub_stat_2)
+    sub.append(sub_stat_3)
+    sub.append(sub_stat_4)
+
     # Create the SQL query
     query = f"""
         SELECT DISTINCT Characters, Sub_Stats FROM artifacts
@@ -196,108 +202,29 @@ def search():
 
     #  result_text.insert f"Результат поиска :{results}")
 
-    # Check if the results are empty
-    if results:
-        for result in results:
-            # Получить имя персонажа
-            character_names = []
-            character_names.append(result[0])
-            if sub_stat_1 and sub_stat_4 and sub_stat_2 and sub_stat_3 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}")
+    if not results:
+        result_text.insert(tk.END, f"No found")
+        return
+    for result in results:
+        character_names = [result[0]]
+        print(character_names)
+        print(results)
+        if not character_names:
+            result_text.insert(tk.END, f"No found")
+            return
+        result_sub = []
+        result_sub = result[1].split()
+        # print(result[1])
+        print(result_sub)
 
-            elif sub_stat_1 and sub_stat_2 and sub_stat_3 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}")
+        res = find_in_list(sub, result_sub)
+        if not res:
+            result_text.insert(tk.END, f"No found")
+            return
 
-            elif sub_stat_1 and sub_stat_2 and sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}")
-
-            elif sub_stat_1 and sub_stat_3 and sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}")
-
-            elif sub_stat_2 and sub_stat_3 and sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}")
-
-            elif sub_stat_1 and sub_stat_2 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"{result[1]}"
-                                               f"{result[0]}")
-
-            elif sub_stat_1 and sub_stat_3 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n")
-
-            elif sub_stat_1 and sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}\n")
-
-            elif sub_stat_2 and sub_stat_3 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n")
-
-            elif sub_stat_2 and sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}\n")
-
-            elif sub_stat_3 and sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}\n")
-
-            elif sub_stat_1 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_1 = {sub_stat_1}\n")
-
-            elif sub_stat_2 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_2 = {sub_stat_2}\n")
-
-            elif sub_stat_3 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_3 = {sub_stat_3}\n")
-
-            elif sub_stat_4 in result[1]:
-                for character_name in character_names:
-                    result_text.insert(tk.END, f"\n{character_name}\n"
-                                               f"Sub_stat_4 = {sub_stat_4}\n")
-
-            else:
-                result_text.insert(tk.END, f"No results found")
+        for character_name in character_names:
+            result_text.insert(tk.END, f"\n{character_name}\n"
+                                       f"{res}")
 
 
 # Create the search button
@@ -323,6 +250,16 @@ artifact_dropdown.bind("<<ComboboxSelected>>", dropdowns_changed)
 type_dropdown.bind("<<ComboboxSelected>>", dropdowns_changed)
 main_param_dropdown.bind("<<ComboboxSelected>>", dropdowns_changed)
 sub_stat_one_dropdown.bind("<<ComboboxSelected>>", dropdowns_changed)
+
+
+def find_in_list(list1, list2):
+    result = []
+    for item in list1:
+        if item in list2:
+            result.append(item)
+
+    return result
+
 
 # Bind the search button to the search function
 # search_button.bind("<Button-1>", lambda **kwargs: search())
