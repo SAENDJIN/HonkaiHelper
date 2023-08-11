@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinker_course.chapter_three.windows import set_dpi_awareness
 
+set_dpi_awareness()
 
 class DistanceConverter(tk.Tk):
     def __init__(self, *args, **kwargs):
