@@ -243,7 +243,8 @@ def search():
                     result_text.insert(tk.END, f"\n{character_name}\n"
                                                f"Sub_stat_1 = {sub_stat_1}\n"
                                                f"Sub_stat_2 = {sub_stat_2}\n"
-                                               f"{result[1]}")
+                                               f"{result[1]}"
+                                               f"{result[0]}")
 
             elif sub_stat_1 and sub_stat_3 in result[1]:
                 for character_name in character_names:
