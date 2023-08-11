@@ -207,15 +207,15 @@ def search():
         return
     for result in results:
         character_names = [result[0]]
-        print(character_names)
-        print(results)
+        # print(character_names)
+        # print(results)
         if not character_names:
             result_text.insert(tk.END, f"No found")
             return
         result_sub = []
         result_sub = result[1].split()
         # print(result[1])
-        print(result_sub)
+        # print(result_sub)
 
         res = find_in_list(sub, result_sub)
         if not res:
