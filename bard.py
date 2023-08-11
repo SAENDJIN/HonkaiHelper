@@ -184,7 +184,7 @@ def search():
     query = f"""
         SELECT DISTINCT Characters, Sub_Stats FROM artifacts
         WHERE (Relicts = '{relic_name}' OR Ormnaments = '{relic_name}')
-        AND {relic_type} = "{main_stat}"
+        AND {relic_type} LIKE "%{main_stat}%"
         AND (Sub_Stats LIKE "%{sub_stat_1}%"
         OR Sub_Stats LIKE "%{sub_stat_2}%"
         OR Sub_Stats LIKE "%{sub_stat_3}%"
