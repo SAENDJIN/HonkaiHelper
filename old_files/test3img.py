@@ -11,7 +11,7 @@ options = ["Clara", "Natasha", "Sushang", "Trailblazer (Physical)",
 
 
 def update_image(selected_option, image_label):
-    image_filename = f"img_char/{selected_option}.webp"
+    image_filename = f"/Users/veronika/PycharmProjects/HonkaiHelper/img_char/{selected_option}.webp"
     image = Image.open(image_filename)
     image = image.resize((200, 200))  # Resize the image if needed
     photo = ImageTk.PhotoImage(image)
